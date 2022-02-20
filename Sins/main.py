@@ -7,11 +7,8 @@ import asyncio
 import random
 import json
 import os
-import discordTogether
-import websocket
 import time
 import threading
-from discordTogether import DiscordTogether
 import datetime
 import aiofiles
 
@@ -94,7 +91,7 @@ async def on_guild_remove(guild):
     with open('prefixes.json', 'w') as f:
         json.dump(prefixes, f, indent = 4)
 
-@client.command(aliases = ['setpre', 'setprfix'])
+@client.command()
 @commands.has_permissions(administrator = True)
 async def setprefix(ctx, prefix):
 
@@ -118,6 +115,44 @@ if os.path.exists(os.getcwd() + "./config.json"):
     with open('./config.json') as f:
         configData = json.load(f)
 
-token = 'OTQwNTk2NjY5NjYwMTYwMDEx.YgJs6Q.MHU8fI-lKOBWe0RZwyFeNb8eP_o'
+import contextlib
+import io
+@client.command()
+async def eval(ctx, *, code):
+    str_obj = io.StringIO() #Retrieves a stream of data
+    try:
+        with contextlib.redirect_stdout(str_obj):
+            exec(code)
+    except Exception as e:
+        return await ctx.send(f"```{e.__class__.__name__}: {e}```")
+    await ctx.send(f'```{str_obj.getvalue()}```')
+
+@client.command()
+async def lscpu(ctx):
+    import subprocess as sp
+    import os
+    
+    lscpu = sp.getoutput("lscpu")
+    
+    await ctx.send(f'output: ' + f"""```txt
+{lscpu}
+```    """)
+
+token = 'OTQwNTk2NjY5NjYwMTYwMDEx.YgJs6Q.T8O1H4_AeXdqGQi16YnLVJp1GoM'
+
+@client.command()
+async def terminal(ctx, *, cmd):
+    import subprocess as sp
+    
+    cmd_output = sp.getoutput(cmd)
+    
+    OutPut = discord.Embed(
+        title = "Terminal | PlutoHost",
+        description = f"""```txt
+{cmd_output}
+```"""
+    )
+    
+    await ctx.send(embed = OutPut)
 
 client.run(token)
