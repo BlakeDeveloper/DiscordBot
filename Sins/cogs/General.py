@@ -2,11 +2,9 @@ import discord
 from discord.colour import Color
 from discord.ext import commands
 import random
-from discordTogether import DiscordTogether
 import time
 import datetime
 from discord import voice_client
-from nextcord.ext.commands.core import cooldown
 
 class Utils(commands.Cog):
 
@@ -83,13 +81,13 @@ class Utils(commands.Cog):
     @commands.cooldown(1,200,commands.BucketType.member)
     async def kill(self, ctx, member: discord.Member):
         responses = [
-            'Ate too much mcdonalds and died of loss of air.',
+            'Ate too much mcdonalds and died due to loss of air.',
             'Died of starvation.',
             'Became a fornite kid.',
-            'Fell down 100 staris and broke their neck',
-            'Stopped lookng at scp-173 and got there neck snapped.',
-            'Didnt duck when Arnold shot the temernator.',
-            'Fell down a cliff while watching how to die.',
+            'Fell down 100 stairs and broke their neck.',
+            'Stopped lookng at scp-173 and got their neck snapped.',
+            'Didnt duck when a AK-47 was shot.',
+            'Fell down a cliff whilst watching "How to jump off a cliff".',
             'Just had enough and died.',
             'Got orbital striked.',
             'Got greifed by a Oppressor MK 2.',

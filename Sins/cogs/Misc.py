@@ -1,5 +1,5 @@
 from nextcord import embeds
-from Main import get_prefix
+from main import get_prefix
 import discord
 from discord import permissions
 from discord.colour import Color
@@ -26,7 +26,7 @@ class Misc(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_member_join(self, member):
-		channel = self.client.get_channel(id)
+		channel = self.client.get_channel(943327171987001415)
 		WelcomeEmbed = discord.Embed(
 			title = 'Welcome!',
 			description = f'Welcome {member.mention} to {member.guild.name}!',
